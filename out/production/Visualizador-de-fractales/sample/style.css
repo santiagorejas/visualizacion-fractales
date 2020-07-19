@@ -1,0 +1,47 @@
+/*
+esmeralda: 2ecc71
+esmeralda oscuro: 27ae60
+*/
+
+#animationPane {
+    -fx-background-color: #555;
+}
+
+#startBtn {
+    -fx-background-color: #2ecc71;
+    -fx-border-color: #27ae60;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+}
+
+/* Combo box */
+
+.combo-box-popup .list-view .list-cell:filled:hover{
+    -fx-background-color: #2ecc71;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected{
+    -fx-background-color: #27ae60;
+}
+
+/* Color picker */
+.colorPicker {
+    -fx-background-color: #fff;
+    -fx-border-color: #555;
+    -fx-border-radius: 5px;
+}
+
+/* Slide bar */
+
+.jfx-slider > .thumb {
+     -fx-background-color: #27ae60;
+}
+
+.jfx-slider > .colored-track {
+     -fx-background-color: #2ecc71;
+}
+
+.jfx-slider > .animated-thumb {
+     -fx-background-color: #27ae60;
+}
