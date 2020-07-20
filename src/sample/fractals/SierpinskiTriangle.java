@@ -12,21 +12,17 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SierpinskiTriangle implements Fractal{
+public class SierpinskiTriangle extends Fractal{
 
-    private GraphicsContext canvas;
     private Pane pane;
 
     public SierpinskiTriangle(Pane pane) {
-        this.canvas = canvas;
+        super(pane);
         this.pane = pane;
     }
 
     @Override
     public Timeline getAnimation(double speed, String color, int depth) {
-
-        System.out.println("Speed: " + speed);
-        System.out.println("Depth: " + depth);
 
         Timeline timeline = new Timeline();
         Duration timepoint = Duration.ZERO;
@@ -46,7 +42,7 @@ public class SierpinskiTriangle implements Fractal{
 
         for (Line line: lines) {
             timepoint = timepoint.add(pause);
-            KeyFrame keyFrame = new KeyFrame(timepoint, e->pane.getChildren().add(line));
+            KeyFrame keyFrame = new KeyFrame(timepoint, e->super.getPane().getChildren().add(line));
             timeline.getKeyFrames().add(keyFrame);
         }
 

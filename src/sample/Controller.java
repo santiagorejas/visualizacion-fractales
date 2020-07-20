@@ -3,18 +3,16 @@ package sample;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXSlider;
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
+import sample.fractals.BarnsleyFern;
 import sample.fractals.Fractal;
 import sample.fractals.SierpinskiTriangle;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,16 +41,16 @@ public class Controller implements Initializable {
         fractalsBox.getItems().add("Fractal 1");
         fractalsBox.getItems().add("Fractal 2");
         fractalsBox.getItems().add("Fractal 3");
-        fractalsBox.getItems().add("Fractal 4");
-        fractalsBox.getItems().add("Fractal 5");
-        fractalsBox.getItems().add("SierpinskiTriangle");
+        fractalsBox.getItems().add("Barnsley Fern");
+        fractalsBox.getItems().add("Fractal tree");
+        fractalsBox.getItems().add("Sierpinski Triangle");
     }
 
 
     public void start() {
         animationPane.getChildren().clear();
-        SierpinskiTriangle f = new SierpinskiTriangle(animationPane);
-        Timeline timeline = f.getAnimation(
+        Fractal fractal = this.getFractal();
+        Timeline timeline = fractal.getAnimation(
                 speedSlider.getMax() - speedSlider.getValue() + 1,
                 strokeColor.getValue().toString().substring(2),
                 (int) depthSlider.getValue()
@@ -74,11 +72,15 @@ public class Controller implements Initializable {
 
     private Fractal getFractal() {
         switch(fractalsBox.getValue()) {
-            case "SierpinskiTriangle":
+            case "Sierpinski Triangle": {
                 return new SierpinskiTriangle(animationPane);
-            /*case y:
-                // code block
-                break;*/
+            }
+            case "Fractal tree": {
+                return new Tree60(animationPane);
+            }
+            case "Barnsley Fern": {
+                return new BarnsleyFern(animationPane);
+            }
             default:
                 return null;
         }
@@ -86,12 +88,15 @@ public class Controller implements Initializable {
 
     public void fractalSelected() {
         switch(fractalsBox.getValue()) {
-            case "SierpinskiTriangle":
+            case "Sierpinski Triangle": {
                 depthSlider.setMax(7);
                 speedSlider.setMax(75);
-            /*case y:
-                // code block
-                break;*/
+            }
+            case "Barnsley Fern": {
+                depthSlider.setMin(1000);
+                depthSlider.setMax(30000);
+                speedSlider.setMin(90);
+            }
             default:
                 return;
         }
