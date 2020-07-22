@@ -47,8 +47,8 @@ public class BarnsleyFern extends Fractal {
             Ellipse point = new Ellipse(
                     w/2 + x*w/10,
                     h-y*h/10,
-                    0.1,
-                    0.1);
+                    1,
+                    1);
             point.setStyle(color);
             points.add(point);
 

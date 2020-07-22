@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
-import sample.fractals.BarnsleyFern;
-import sample.fractals.Fractal;
-import sample.fractals.SierpinskiTriangle;
+import sample.fractals.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,12 +33,8 @@ public class Controller implements Initializable {
 
         stopBtn.setDisable(true);
 
-        depthSlider.setMin(1);
-        //speedSlider.setMin(1);
-
-        fractalsBox.getItems().add("Fractal 1");
-        fractalsBox.getItems().add("Fractal 2");
-        fractalsBox.getItems().add("Fractal 3");
+        fractalsBox.getItems().add("Cantor Set");
+        fractalsBox.getItems().add("Sierpinski Carpet");
         fractalsBox.getItems().add("Barnsley Fern");
         fractalsBox.getItems().add("Fractal tree");
         fractalsBox.getItems().add("Sierpinski Triangle");
@@ -53,7 +47,7 @@ public class Controller implements Initializable {
         Timeline timeline = fractal.getAnimation(
                 speedSlider.getMax() - speedSlider.getValue() + 1,
                 strokeColor.getValue().toString().substring(2),
-                (int) depthSlider.getValue()
+                (int)Math.round(depthSlider.getValue())
         );
         startBtn.setDisable(true);
         stopBtn.setDisable(false);
@@ -76,10 +70,16 @@ public class Controller implements Initializable {
                 return new SierpinskiTriangle(animationPane);
             }
             case "Fractal tree": {
-                return new Tree60(animationPane);
+                return new Tree(animationPane, 30);
             }
             case "Barnsley Fern": {
                 return new BarnsleyFern(animationPane);
+            }
+            case "Sierpinski Carpet": {
+                return new SierpinskiCarpet(animationPane);
+            }
+            case "Cantor Set": {
+                return new CantorSet(animationPane);
             }
             default:
                 return null;
@@ -87,18 +87,50 @@ public class Controller implements Initializable {
     }
 
     public void fractalSelected() {
+
+        /*
+        depthSlider.setMin();
+        depthSlider.setMax();
+        speedSlider.setMin();
+        speedSlider.setMax();
+        */
+
         switch(fractalsBox.getValue()) {
             case "Sierpinski Triangle": {
+                depthSlider.setMin(1);
                 depthSlider.setMax(7);
+                speedSlider.setMin(1);
                 speedSlider.setMax(75);
+                break;
+            }
+            case "Fractal tree": {
+                depthSlider.setMin(1);
+                depthSlider.setMax(8);
+                speedSlider.setMin(1);
+                speedSlider.setMax(100);
+                break;
             }
             case "Barnsley Fern": {
-                depthSlider.setMin(1000);
-                depthSlider.setMax(30000);
+                this.depthSlider.setMin(1000);
+                this.depthSlider.setMax(30000);
                 speedSlider.setMin(90);
+                speedSlider.setMax(100);
+                break;
             }
-            default:
-                return;
+            case "Sierpinski Carpet": {
+                depthSlider.setMin(1);
+                depthSlider.setMax(6);
+                speedSlider.setMin(1);
+                speedSlider.setMax(100);
+                break;
+            }
+            case "Cantor Set": {
+                depthSlider.setMin(1);
+                depthSlider.setMax(6);
+                speedSlider.setMin(1);
+                speedSlider.setMax(100);
+                break;
+            }
         }
     }
 
