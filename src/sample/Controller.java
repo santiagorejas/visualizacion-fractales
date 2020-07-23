@@ -61,7 +61,11 @@ public class Controller implements Initializable {
     }
 
     private void disableButtons(boolean bool) {
-
+        fractalsBox.setDisable(bool);
+        depthSlider.setDisable(bool);
+        speedSlider.setDisable(bool);
+        startBtn.setDisable(bool);
+        strokeColor.setDisable(bool);
     }
 
     public void start() {
@@ -72,7 +76,7 @@ public class Controller implements Initializable {
                 strokeColor.getValue().toString().substring(2),
                 (int)Math.round(depthSlider.getValue())
         );
-        startBtn.setDisable(true);
+        disableButtons(true);
         stopBtn.setDisable(false);
         timeline.setOnFinished(e-> {
             startBtn.setDisable(false);
@@ -82,7 +86,7 @@ public class Controller implements Initializable {
         stopBtn.setOnAction(e-> {
             timeline.stop();
             stopBtn.setDisable(true);
-            startBtn.setDisable(false);
+            disableButtons(false);
         });
 
     }
@@ -173,7 +177,6 @@ public class Controller implements Initializable {
     }
 
     public void backgroundColorChange() {
-        System.out.println(backgroundColor.getValue().toString().substring(2));
         animationPane.setStyle("-fx-background-color: #" + backgroundColor.getValue().toString().substring(2));
     }
 
