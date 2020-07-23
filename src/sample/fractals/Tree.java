@@ -2,7 +2,6 @@ package sample.fractals;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -13,7 +12,7 @@ import java.util.List;
 public class Tree extends Fractal {
 
     private int forkAngle;
-    private final double base = 10.0;
+    private final double base = 15;
 
     public Tree(Pane pane, int forkAngle) {
         super(pane);

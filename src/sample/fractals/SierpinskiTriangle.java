@@ -3,8 +3,6 @@ package sample.fractals;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -34,10 +32,9 @@ public class SierpinskiTriangle extends Fractal{
                 new Point2D(5.0, 490),
                 new Point2D(330.0, 5.0),
                 new Point2D(665.0, 490.0),
-                0,
+                depth,
                 lines,
-                color,
-                depth
+                color
         );
 
         for (Line line: lines) {
@@ -68,36 +65,33 @@ public class SierpinskiTriangle extends Fractal{
         );
     }
 
-    private void getLines(Point2D a, Point2D b, Point2D c, int depth, List<Line> lines, String color, int depthLimit) {
+    private void getLines(Point2D a, Point2D b, Point2D c, int depth, List<Line> lines, String color) {
 
         addTriangle(a, b, c, lines, color);
-        if (depth < depthLimit) {
+        if (depth > 0) {
             getLines(
                     a,
                     getMidPoint(a, b),
                     getMidPoint(a, c),
-                    depth + 1,
+                    depth - 1,
                     lines,
-                    color,
-                    depthLimit
+                    color
             );
             getLines(
                     b,
                     getMidPoint(a, b),
                     getMidPoint(b, c),
-                    depth + 1,
+                    depth - 1,
                     lines,
-                    color,
-                    depthLimit
+                    color
             );
             getLines(
                     c,
                     getMidPoint(c, b),
                     getMidPoint(a, c),
-                    depth + 1,
+                    depth - 1,
                     lines,
-                    color,
-                    depthLimit
+                    color
             );
         }
 

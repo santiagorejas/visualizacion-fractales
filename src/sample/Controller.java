@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import sample.fractals.*;
 
 import java.net.URL;
@@ -28,18 +29,40 @@ public class Controller implements Initializable {
     public JFXButton stopBtn;
     public JFXButton startBtn;
 
+    private Alert infoAlert;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        fractalsBox.setValue("Sierpinski Carpet");
+        depthSlider.setMin(1);
+        depthSlider.setMax(6);
+        speedSlider.setMin(1);
+        speedSlider.setMax(100);
+
+        backgroundColor.setValue(Color.valueOf("#2c3e50"));
+
+
         stopBtn.setDisable(true);
 
-        fractalsBox.getItems().add("Cantor Set");
-        fractalsBox.getItems().add("Sierpinski Carpet");
         fractalsBox.getItems().add("Barnsley Fern");
-        fractalsBox.getItems().add("Fractal tree");
+        fractalsBox.getItems().add("Cantor Set");
+        fractalsBox.getItems().add("Fractal tree 30º");
+        fractalsBox.getItems().add("Koch Snowflake");
+        fractalsBox.getItems().add("Pythagoras Tree");
+        fractalsBox.getItems().add("Sierpinski Carpet");
         fractalsBox.getItems().add("Sierpinski Triangle");
+
+        this.infoAlert = new Alert(Alert.AlertType.INFORMATION);
+        infoAlert.setTitle("About");
+        infoAlert.setHeaderText(null);
+        infoAlert.setContentText("Creado por Santiago Orejas.\n" + "WWW.github.com/santiagorejas");
+
     }
 
+    private void disableButtons(boolean bool) {
+
+    }
 
     public void start() {
         animationPane.getChildren().clear();
@@ -66,20 +89,26 @@ public class Controller implements Initializable {
 
     private Fractal getFractal() {
         switch(fractalsBox.getValue()) {
-            case "Sierpinski Triangle": {
-                return new SierpinskiTriangle(animationPane);
-            }
-            case "Fractal tree": {
-                return new Tree(animationPane, 30);
-            }
             case "Barnsley Fern": {
                 return new BarnsleyFern(animationPane);
+            }
+            case "Cantor Set": {
+                return new CantorSet(animationPane);
+            }
+            case "Fractal tree 30º": {
+                return new Tree(animationPane, 30);
+            }
+            case "Koch Snowflake": {
+                return new KochSnowflake(animationPane);
+            }
+            case "Pythagoras Tree": {
+                return new PythagorasTree(animationPane);
             }
             case "Sierpinski Carpet": {
                 return new SierpinskiCarpet(animationPane);
             }
-            case "Cantor Set": {
-                return new CantorSet(animationPane);
+            case "Sierpinski Triangle": {
+                return new SierpinskiTriangle(animationPane);
             }
             default:
                 return null;
@@ -88,32 +117,39 @@ public class Controller implements Initializable {
 
     public void fractalSelected() {
 
-        /*
-        depthSlider.setMin();
-        depthSlider.setMax();
-        speedSlider.setMin();
-        speedSlider.setMax();
-        */
-
         switch(fractalsBox.getValue()) {
-            case "Sierpinski Triangle": {
+            case "Barnsley Fern": {
+                depthSlider.setMin(1000);
+                depthSlider.setMax(25000);
+                speedSlider.setMin(90);
+                speedSlider.setMax(100);
+                break;
+            }
+            case "Cantor Set": {
                 depthSlider.setMin(1);
                 depthSlider.setMax(7);
                 speedSlider.setMin(1);
-                speedSlider.setMax(75);
+                speedSlider.setMax(100);
                 break;
             }
-            case "Fractal tree": {
+            case "Fractal tree 30º": {
                 depthSlider.setMin(1);
                 depthSlider.setMax(8);
                 speedSlider.setMin(1);
                 speedSlider.setMax(100);
                 break;
             }
-            case "Barnsley Fern": {
-                this.depthSlider.setMin(1000);
-                this.depthSlider.setMax(30000);
-                speedSlider.setMin(90);
+            case "Koch Snowflake": {
+                depthSlider.setMin(1);
+                depthSlider.setMax(6);
+                speedSlider.setMin(25);
+                speedSlider.setMax(100);
+                break;
+            }
+            case "Pythagoras Tree": {
+                depthSlider.setMin(1);
+                depthSlider.setMax(9);
+                speedSlider.setMin(1);
                 speedSlider.setMax(100);
                 break;
             }
@@ -124,13 +160,15 @@ public class Controller implements Initializable {
                 speedSlider.setMax(100);
                 break;
             }
-            case "Cantor Set": {
+            case "Sierpinski Triangle": {
                 depthSlider.setMin(1);
-                depthSlider.setMax(6);
+                depthSlider.setMax(7);
                 speedSlider.setMin(1);
-                speedSlider.setMax(100);
+                speedSlider.setMax(75);
                 break;
             }
+            default:
+                return;
         }
     }
 
@@ -139,19 +177,12 @@ public class Controller implements Initializable {
         animationPane.setStyle("-fx-background-color: #" + backgroundColor.getValue().toString().substring(2));
     }
 
-
     public void cleanAnimation() {
         animationPane.getChildren().clear();
     }
 
     public void viewInfo() {
-        System.out.println("Hola");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText("Creado por Santiago Orejas.");
-
-        alert.showAndWait();
+        infoAlert.showAndWait();
     }
 
     public void exitApp() {
