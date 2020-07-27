@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxWidth="890.0" minWidth="500.0" prefHeight="500.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+         <children>
+            <JFXButton fx:id="startBtn" layoutX="10.0" layoutY="358.0" onAction="#start" prefHeight="30.0" prefWidth="200.0" ripplerFill="#27ae60" text="Start" />
+            <Pane fx:id="animationPane" layoutX="220.0" prefHeight="500.0" prefWidth="670.0" />
+            <JFXButton fx:id="aboutBtn" layoutX="112.0" layoutY="463.0" onAction="#viewInfo" prefHeight="28.0" prefWidth="98.0" text="About" textAlignment="RIGHT" />
+            <ColorPicker fx:id="backgroundColor" layoutX="10.0" layoutY="238.0" onAction="#backgroundColorChange" prefHeight="30.0" prefWidth="200.0" styleClass="colorPicker" />
+            <ColorPicker fx:id="strokeColor" layoutX="10.0" layoutY="315.0" prefHeight="30.0" prefWidth="199.0" styleClass="colorPicker" />
+            <JFXSlider fx:id="speedSlider" layoutX="10.0" layoutY="180.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="sliderBar" />
+            <JFXSlider fx:id="depthSlider" layoutX="10.0" layoutY="118.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="sliderBar" />
+            <JFXComboBox fx:id="fractalsBox" focusColor="#2ecc71" layoutX="10.0" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#fractalSelected" prefHeight="30.0" prefWidth="200.0" unFocusColor="#27ae60" />
+            <Text layoutX="10.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fractales:">
+               <font>
+                  <Font name="Lato-Light" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profundidad:">
+               <font>
+                  <Font name="Lato-Light" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Velocidad de animacion:">
+               <font>
+                  <Font name="Lato-Light" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color de fondo:">
+               <font>
+                  <Font name="Lato-Light" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color del trazo:">
+               <font>
+                  <Font name="Lato-Light" size="18.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="stopBtn" layoutX="10.0" layoutY="393.0" prefHeight="30.0" prefWidth="200.0" ripplerFill="#c0392b" text="Stop" />
+            <JFXButton fx:id="cleanBtn" layoutX="10.0" layoutY="428.0" onAction="#cleanAnimation" prefHeight="30.0" prefWidth="200.0" ripplerFill="#2980b9" text="Clean" />
+            <JFXButton fx:id="exitBtn" layoutX="10.0" layoutY="463.0" onAction="#exitApp" prefHeight="28.0" prefWidth="98.0" text="Exit" textAlignment="RIGHT" />
+   </children>
+</AnchorPane>

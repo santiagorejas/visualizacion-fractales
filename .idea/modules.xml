@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Visualizador-de-fractales.iml" filepath="$PROJECT_DIR$/Visualizador-de-fractales.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VisualizadorDeFractales.iml" filepath="$PROJECT_DIR$/VisualizadorDeFractales.iml" />
     </modules>
   </component>
 </project>

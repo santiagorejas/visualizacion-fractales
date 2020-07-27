@@ -1,0 +1,12 @@
+sample/Launcher.class
+sample/fractals/CantorSet.class
+sample/fractals/PythagorasTree.class
+sample/fractals/SierpinskiCarpet.class
+module-info.class
+sample/fractals/BarnsleyFern.class
+sample/fractals/Fractal.class
+sample/Controller.class
+sample/MainApp.class
+sample/fractals/KochSnowflake.class
+sample/fractals/SierpinskiTriangle.class
+sample/fractals/Tree.class
